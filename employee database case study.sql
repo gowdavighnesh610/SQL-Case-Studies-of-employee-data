@@ -113,3 +113,100 @@ WHERE Salary > (
     SELECT AVG(Salary)
     FROM Employees
 );
+
+
+Question 1. Display all employee records.
+SELECT * FROM Employees;
+
+
+Question 2. Display employee names and salaries.
+SELECT EmpName, Salary
+FROM Employees;
+
+
+Question 3. Find employees earning more than 40,000.
+SELECT *
+FROM Employees
+WHERE Salary > 40000;
+
+
+Question 4. Display female employees.
+SELECT *
+FROM Employees
+WHERE Gender = 'Female';
+
+
+Question 5. Display employees in descending order of salary.
+SELECT EmpName, Salary
+FROM Employees
+ORDER BY Salary DESC;
+
+
+JOIN queries
+Question 6. Display employee names with their department names.
+SELECT E.EmpName, D.DeptName
+FROM Employees E
+INNER JOIN Departments D
+ON E.DeptID = D.DeptID;
+
+
+Question 7. Display employee names, salaries, and department locations.
+SELECT E.EmpName, E.Salary, D.Location
+FROM Employees E
+INNER JOIN Departments D
+ON E.DeptID = D.DeptID;
+
+
+Question 8. Display employees working in the IT department.
+SELECT E.EmpName, E.Salary
+FROM Employees E
+INNER JOIN Departments D
+ON E.DeptID = D.DeptID
+WHERE D.DeptName = 'IT';
+
+
+Question 9. Display employees working in Bangalore.
+SELECT E.EmpName, D.DeptName, D.Location
+FROM Employees E
+INNER JOIN Departments D
+ON E.DeptID = D.DeptID
+WHERE D.Location = 'Bangalore';
+
+
+Question 10. Display all employees and their department names, including employees without a matching department.
+SELECT E.EmpName, D.DeptName
+FROM Employees E
+LEFT JOIN Departments D
+ON E.DeptID = D.DeptID;
+
+
+question 12. Find the average salary in each department.
+SELECT D.DeptName, AVG(E.Salary) AS AverageSalary
+FROM Employees E
+INNER JOIN Departments D
+ON E.DeptID = D.DeptID
+GROUP BY D.DeptName;
+
+Question 11. Find the total number of employees in each department.
+SELECT D.DeptName, COUNT(E.EmpID) AS TotalEmployees
+FROM Departments D
+LEFT JOIN Employees E
+ON D.DeptID = E.DeptID
+GROUP BY D.DeptID, D.DeptName;
+
+
+Question 13. Find the highest salary in each department.
+SELECT D.DeptName, MAX(E.Salary) AS HighestSalary
+FROM Employees E
+INNER JOIN Departments D
+ON E.DeptID = D.DeptID
+GROUP BY D.DeptName;
+
+
+Question 14. Find employees earning more than the average salary.
+SELECT EmpName, Salary
+FROM Employees
+WHERE Salary > (
+    SELECT AVG(Salary)
+    FROM Employees
+);
